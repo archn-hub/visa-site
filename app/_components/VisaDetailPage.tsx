@@ -131,14 +131,14 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
               {phoneDisplay}
             </a>
             <a
-              href="#contact"
+              href="/contact"
               className="rounded-full bg-[#143a6b] px-5 py-3 text-sm font-black text-white transition hover:bg-[#0b2344]"
             >
               無料相談
             </a>
           </div>
           <a
-            href="#contact"
+            href="/contact"
             className="rounded-full bg-[#143a6b] px-4 py-2 text-sm font-black text-white md:hidden"
           >
             相談
@@ -183,7 +183,7 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700">{page.description}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#contact"
+                href="/contact"
                 className="rounded-full bg-[#143a6b] px-7 py-4 text-center text-sm font-black text-white transition hover:bg-[#0b2344]"
               >
                 無料相談を予約する
@@ -286,7 +286,7 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
               電話で相談する
             </a>
             <a
-              href={`mailto:info@example.com?subject=${encodeURIComponent(`${page.title}の無料相談`)}`}
+              href="/contact"
               className="rounded-full bg-[#caa15a] px-8 py-4 text-sm font-black text-white transition hover:bg-[#b58a42]"
             >
               メールで問い合わせる

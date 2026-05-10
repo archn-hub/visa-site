@@ -12,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    {
+      url: absoluteUrl("/contact"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...Object.values(visaPages).map((page) => ({
       url: absoluteUrl(`/${page.slug}`),
       lastModified: now,

@@ -153,14 +153,14 @@ export default function Home() {
               {phoneDisplay}
             </a>
             <a
-              href="#contact"
+              href="/contact"
               className="rounded-full bg-[#143a6b] px-5 py-3 text-sm font-black text-white transition hover:bg-[#0b2344]"
             >
               無料相談
             </a>
           </div>
           <a
-            href="#contact"
+            href="/contact"
             className="rounded-full bg-[#143a6b] px-4 py-2 text-sm font-black text-white md:hidden"
           >
             相談
@@ -187,7 +187,7 @@ export default function Home() {
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="rounded-full bg-white px-6 py-3 text-center text-sm font-black text-[#143a6b] transition hover:bg-[#f4f8ff]"
                 >
                   無料相談はこちら
@@ -353,7 +353,7 @@ export default function Home() {
               電話で相談する
             </a>
             <a
-              href="mailto:info@example.com?subject=ビザ無料相談"
+              href="/contact"
               className="rounded-full bg-[#caa15a] px-8 py-4 text-sm font-black text-white transition hover:bg-[#b58a42]"
             >
               問い合わせボタン
