@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ConversionTracker } from "../../_components/ConversionTracker";
 import { phoneDisplay, phoneHref } from "../../_lib/site";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function ContactThanksPage() {
   return (
     <main className="min-h-screen bg-[#f4f8ff] px-4 py-10 text-[#0b2344] sm:px-6 lg:px-8">
+      <ConversionTracker />
       <div className="mx-auto max-w-3xl rounded-[28px] border border-slate-200 bg-white p-8 text-center shadow-[0_16px_40px_rgba(11,35,68,0.08)] sm:p-10">
         <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">THANK YOU</p>
         <h1 className="mt-4 text-3xl font-black text-[#143a6b] sm:text-4xl">
