@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
+import Script from "next/script";
 
 type FormValues = {
   name: string;
@@ -13,6 +14,17 @@ type FormValues = {
 };
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
+const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
 const initialValues: FormValues = {
   name: "",
@@ -69,6 +81,8 @@ export function ContactForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const hasErrors = useMemo(() => Object.keys(errors).length > 0, [errors]);
 
@@ -82,14 +96,67 @@ export function ContactForm() {
     });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function getRecaptchaToken() {
+    if (!recaptchaSiteKey) return "";
+
+    if (!window.grecaptcha) {
+      throw new Error("reCAPTCHAを読み込めませんでした。ページを再読み込みしてください。");
+    }
+
+    return new Promise<string>((resolve, reject) => {
+      window.grecaptcha?.ready(() => {
+        window.grecaptcha
+          ?.execute(recaptchaSiteKey, { action: "contact" })
+          .then(resolve)
+          .catch(() => reject(new Error("reCAPTCHAの確認に失敗しました。")));
+      });
+    });
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setSubmitError("");
     const nextErrors = validate(values);
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length === 0) {
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setIsSubmitting(true);
+      const formData = new FormData(event.currentTarget);
+      let response: Response;
+
+      try {
+        const recaptchaToken = await getRecaptchaToken();
+        formData.set("recaptchaToken", recaptchaToken);
+        response = await fetch("/contact/submit", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "x-contact-form": "fetch",
+          },
+        });
+      } catch (error) {
+        setIsSubmitting(false);
+        setSubmitError(
+          error instanceof Error
+            ? error.message
+            : "reCAPTCHAの確認に失敗しました。時間をおいて再度お試しください。",
+        );
+        return;
+      }
+
+      setIsSubmitting(false);
+
+      if (response.ok) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      const result = await response.json().catch(() => null);
+      if (result?.errors) {
+        setErrors(result.errors);
+      }
+      setSubmitError(result?.message ?? "送信できませんでした。時間をおいて再度お試しください。");
     }
   }
 
@@ -129,15 +196,27 @@ export function ContactForm() {
   }
 
   return (
-    <form
-      action="/contact/submit"
-      method="post"
-      onSubmit={handleSubmit}
-      className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_16px_40px_rgba(11,35,68,0.08)] sm:p-8"
-    >
+    <>
+      {recaptchaSiteKey && (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+          strategy="afterInteractive"
+        />
+      )}
+      <form
+        action="/contact/submit"
+        method="post"
+        onSubmit={handleSubmit}
+        className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_16px_40px_rgba(11,35,68,0.08)] sm:p-8"
+      >
       {hasErrors && (
         <div className="mb-6 rounded-2xl border border-[#e96078]/30 bg-[#e96078]/10 p-4 text-sm font-bold leading-7 text-[#b8324a]">
           入力内容をご確認ください。必須項目が未入力、または形式が正しくない項目があります。
+        </div>
+      )}
+      {submitError && (
+        <div className="mb-6 rounded-2xl border border-[#e96078]/30 bg-[#e96078]/10 p-4 text-sm font-bold leading-7 text-[#b8324a]">
+          {submitError}
         </div>
       )}
 
@@ -244,14 +323,16 @@ export function ContactForm() {
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
+          disabled={isSubmitting}
           className="rounded-full bg-[#143a6b] px-8 py-4 text-sm font-black text-white transition hover:bg-[#0b2344] focus:outline-none focus:ring-4 focus:ring-[#caa15a]/30"
         >
-          送信する
+          {isSubmitting ? "送信中..." : "送信する"}
         </button>
         <p className="text-xs leading-6 text-slate-500">
-          入力内容は送信完了画面の表示にのみ使用します。実運用時は送信先APIまたはフォームサービスを接続してください。
+          送信内容は当事務所への相談対応のために使用します。確認後、担当者よりご連絡いたします。
         </p>
       </div>
-    </form>
+      </form>
+    </>
   );
 }
