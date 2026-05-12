@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { blogArticlesJa } from "./_data/blogJa";
 import { visaPages } from "./_data/visaPages";
 import { visaPagesEn } from "./_data/visaPagesEn";
 import { visaPagesZhCn } from "./_data/visaPagesZhCn";
@@ -62,5 +63,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),
+    ...blogArticlesJa
+      .filter((article) => !article.draft)
+      .map((article) => ({
+        url: absoluteUrl(`/blog/ja/${article.slug}`),
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.65,
+      })),
   ];
 }
