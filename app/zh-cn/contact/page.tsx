@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { BackToTopButton } from "../../_components/BackToTopButton";
 import { SocialContactButtons } from "../../_components/SocialContactButtons";
 import { ChineseContactForm } from "./ChineseContactForm";
 import { phoneDisplay, phoneHref, siteName } from "../../_lib/site";
@@ -93,6 +94,7 @@ export default function ChineseContactPage() {
           <ChineseContactForm />
         </div>
       </section>
+      <BackToTopButton label="上方" ariaLabel="返回页面上方" />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { BackToTopButton } from "../../_components/BackToTopButton";
 import { SocialContactButtons } from "../../_components/SocialContactButtons";
 import { EnglishContactForm } from "./EnglishContactForm";
 import { phoneDisplay, phoneHref, siteName } from "../../_lib/site";
@@ -93,6 +94,7 @@ export default function EnglishContactPage() {
           <EnglishContactForm />
         </div>
       </section>
+      <BackToTopButton label="Top" ariaLabel="Back to page top" />
     </main>
   );
 }

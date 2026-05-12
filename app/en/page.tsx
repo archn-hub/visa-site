@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { BackToTopButton } from "../_components/BackToTopButton";
 import { SocialContactButtons } from "../_components/SocialContactButtons";
 import { visaPagesEn } from "../_data/visaPagesEn";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
@@ -141,6 +142,16 @@ export default function EnglishHomePage() {
                 </a>
               </div>
             </div>
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <div className="flex aspect-square max-h-36 flex-col items-center justify-center rounded-full border-2 border-[#e96078] bg-white text-center text-[#e3425d]">
+                <span className="text-xs font-bold">Consultation</span>
+                <span className="mt-1 text-2xl font-black">¥0</span>
+              </div>
+              <div className="flex aspect-square max-h-36 flex-col items-center justify-center rounded-full border-2 border-[#e96078] bg-white text-center text-[#e3425d]">
+                <span className="text-xs font-bold tracking-[0.18em]">SINCE</span>
+                <span className="mt-1 text-2xl font-black">2010</span>
+              </div>
+            </div>
           </div>
           <div className="flex items-center bg-white/30 p-6 sm:p-10">
             <div className="rounded-[24px] border border-white/60 bg-white/80 p-6 shadow-sm">
@@ -251,6 +262,7 @@ export default function EnglishHomePage() {
           <SocialContactButtons locale="en" tone="dark" className="mt-3" />
         </div>
       </section>
+      <BackToTopButton label="Top" ariaLabel="Back to page top" />
     </main>
   );
 }

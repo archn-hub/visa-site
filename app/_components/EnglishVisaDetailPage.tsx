@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import { BackToTopButton } from "./BackToTopButton";
 import type { VisaPage } from "../_data/visaPages";
 import { SocialContactButtons } from "./SocialContactButtons";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
@@ -235,6 +236,7 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
           <SocialContactButtons locale="en" tone="dark" className="mt-3" />
         </div>
       </section>
+      <BackToTopButton label="Top" ariaLabel="Back to page top" />
     </main>
   );
 }
