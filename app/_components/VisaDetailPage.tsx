@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { VisaPage } from "../_data/visaPages";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 
@@ -117,8 +117,8 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/" className="flex flex-col leading-tight">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <Link href="/" className="min-w-0 flex flex-col leading-tight">
             <span className="text-sm font-black tracking-[0.18em] text-[#143a6b]">
               行政書士アーチ事務所
             </span>
@@ -126,7 +126,7 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
               ビザ申請・在留資格専門サポート
             </span>
           </Link>
-          <div className="hidden items-center gap-5 md:flex">
+          <div className="flex shrink-0 flex-wrap items-center justify-end gap-2 sm:gap-3">
             <Link
               href={`/en/${page.slug}`}
               className="rounded-full bg-[#caa15a] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#b58a42]"
@@ -136,12 +136,12 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
             <Link href={`/zh-cn/${page.slug}`} className="text-xs font-black text-[#143a6b]">
               简体中文
             </Link>
-            <a href={phoneHref} className="text-xl font-black text-[#143a6b]">
+            <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] md:inline">
               {phoneDisplay}
             </a>
             <a
               href="/contact"
-              className="rounded-full bg-[#143a6b] px-5 py-3 text-sm font-black text-white transition hover:bg-[#0b2344]"
+              className="hidden rounded-full bg-[#143a6b] px-5 py-3 text-sm font-black text-white transition hover:bg-[#0b2344] md:inline-flex"
             >
               無料相談
             </a>

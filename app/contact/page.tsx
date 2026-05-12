@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "./ContactForm";
 import { phoneDisplay, phoneHref, siteName } from "../_lib/site";
@@ -30,8 +30,8 @@ export default function ContactPage() {
   return (
     <main id="page-top" className="min-h-screen bg-white text-[#0b2344]">
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/" className="flex flex-col leading-tight">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <Link href="/" className="min-w-0 flex flex-col leading-tight">
             <span className="text-sm font-black tracking-[0.18em] text-[#143a6b]">
               行政書士アーチ事務所
             </span>
@@ -39,7 +39,7 @@ export default function ContactPage() {
               ビザ申請・在留資格専門サポート
             </span>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 flex-wrap items-center justify-end gap-2 sm:gap-3">
             <Link
               href="/en/contact"
               className="rounded-full bg-[#caa15a] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#b58a42]"

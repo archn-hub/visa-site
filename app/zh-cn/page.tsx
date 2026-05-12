@@ -73,8 +73,8 @@ export default function ChineseHomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/zh-cn" className="flex flex-col leading-tight">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <Link href="/zh-cn" className="min-w-0 flex flex-col leading-tight">
             <span className="text-sm font-black tracking-[0.18em] text-[#143a6b]">
               行政书士Arch事务所
             </span>
@@ -82,7 +82,7 @@ export default function ChineseHomePage() {
               日本签证・在留资格・劳务社保咨询
             </span>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 flex-wrap items-center justify-end gap-2 sm:gap-3">
             <Link
               href="/"
               className="rounded-full bg-[#caa15a] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#b58a42]"
