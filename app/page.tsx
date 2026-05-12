@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { absoluteUrl, phoneDisplay, phoneHref, siteDescription, siteName } from "./_lib/site";
 
 export const metadata: Metadata = {
   title: "ビザ申請・在留資格サポート",
   description:
-    "行政書士アーチ事務所は、配偶者ビザ、就労ビザ、技術・人文知識・国際業務、永住申請、帰化申請、経営管理ビザを全国対応でサポートします。",
+    "行政書士アーチ事務所は、日本人配偶者ビザ、就労ビザ、技術・人文知識・国際業務、永住申請、帰化申請、経営管理ビザを全国対応でサポートします。",
   alternates: {
     canonical: "/",
     languages: {
@@ -31,12 +31,12 @@ const strengths = [
   },
   {
     title: "豊富な実績",
-    text: "就労、配偶者、永住、経営管理など、個人・法人双方の申請を幅広く支援しています。",
+    text: "就労、日本人配偶者、永住、経営管理など、個人・法人双方の申請を幅広く支援しています。",
   },
 ];
 
 const services = [
-  { title: "配偶者ビザ", href: "/spouse-visa" },
+  { title: "日本人配偶者ビザ", href: "/spouse-visa" },
   { title: "就労ビザ", href: "/work-visa" },
   { title: "技術・人文知識・国際業務", href: "/engineer-visa" },
   { title: "永住申請", href: "/permanent-residence" },
@@ -45,7 +45,7 @@ const services = [
 ];
 
 const prices = [
-  ["配偶者ビザ申請", "88,000円〜"],
+  ["日本人配偶者ビザ申請", "88,000円〜"],
   ["就労ビザ申請", "88,000円〜"],
   ["技術・人文知識・国際業務", "88,000円〜"],
   ["永住申請", "110,000円〜"],
@@ -197,7 +197,7 @@ export default function Home() {
                 初回相談0円・明朗な料金体系
               </p>
               <p className="mt-3 text-sm leading-7 text-blue-50">
-                配偶者ビザ、就労ビザ、永住申請、経営管理ビザまで、申請取次行政書士が許可に向けた道筋を明確にします。
+                日本人配偶者ビザ、就労ビザ、永住申請、経営管理ビザまで、申請取次行政書士が許可に向けた道筋を明確にします。
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <a

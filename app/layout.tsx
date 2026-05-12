@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "./_components/Analytics";
 import { siteDescription, siteName, siteUrl } from "./_lib/site";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "ビザ申請",
     "在留資格",
     "行政書士",
-    "配偶者ビザ",
+    "日本人配偶者ビザ",
     "就労ビザ",
     "永住申請",
     "帰化申請",

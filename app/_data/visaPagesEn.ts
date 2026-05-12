@@ -1,19 +1,19 @@
-import type { VisaPage } from "./visaPages";
+﻿import type { VisaPage } from "./visaPages";
 
 export const visaPagesEn: Record<string, VisaPage> = {
   "spouse-visa": {
     slug: "spouse-visa",
-    title: "Spouse Visa",
+    title: "Japanese Spouse Visa",
     eyebrow: "SPOUSE VISA",
-    lead: "Support for spouses of Japanese nationals, permanent residents, and long-term residents who wish to live in Japan.",
+    lead: "Support for spouses of Japanese nationals who wish to live in Japan.",
     description:
       "We organize evidence of a genuine marriage, stable income, and living arrangements before filing your application.",
-    metaTitle: "Spouse Visa Application Support | Gyoseishoshi Arch Office",
+    metaTitle: "Japanese Spouse Visa Application Support | Gyoseishoshi Arch Office",
     metaDescription:
-      "Nationwide support for spouse visa applications in Japan. Learn about requirements, documents, common refusal reasons, and fees.",
-    keywords: ["spouse visa Japan", "marriage visa Japan", "Japanese spouse visa", "visa lawyer Japan"],
+      "Nationwide support for Japanese spouse visa applications in Japan. Learn about requirements, documents, common refusal reasons, and fees.",
+    keywords: ["Japanese spouse visa Japan", "marriage visa Japan", "Japanese spouse visa", "visa lawyer Japan"],
     overview: [
-      "A spouse visa is for spouses of Japanese nationals, permanent residents, or long-term residents living in Japan.",
+      "A Japanese spouse visa is for spouses of Japanese nationals living in Japan.",
       "Immigration examines not only the legal marriage but also whether the relationship and household are genuine.",
       "We support certificate of eligibility, change of status, and renewal applications.",
     ],
@@ -55,7 +55,7 @@ export const visaPagesEn: Record<string, VisaPage> = {
         a: "Not always. Savings, family support, and future employment plans may also be considered.",
       },
       {
-        q: "Can you help bring my spouse from overseas?",
+        q: "Can you help bring my Japanese spouse from overseas?",
         a: "Yes. We support Certificate of Eligibility applications and overseas document preparation.",
       },
     ],

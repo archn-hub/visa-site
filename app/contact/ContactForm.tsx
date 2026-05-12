@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
@@ -40,7 +40,7 @@ const statusOptions = [
   "留学",
   "技術・人文知識・国際業務",
   "家族滞在",
-  "日本人の配偶者等",
+  "日本人配偶者等",
   "永住者",
   "定住者",
   "経営・管理",
