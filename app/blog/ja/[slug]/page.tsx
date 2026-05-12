@@ -29,15 +29,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `/blog/ja/${article.slug}`,
     },
-    robots: article.draft
-      ? {
-          index: false,
-          follow: false,
-        }
-      : {
-          index: true,
-          follow: true,
-        },
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
       title: article.title,
       description: article.description,
@@ -133,11 +128,6 @@ export default async function JapaneseBlogArticlePage({ params }: PageProps) {
               <span className="rounded-full bg-white px-4 py-2 text-xs font-black text-[#143a6b] shadow-sm">
                 {article.category}
               </span>
-              {article.draft && (
-                <span className="rounded-full bg-[#e96078]/10 px-4 py-2 text-xs font-black text-[#e3425d]">
-                  下書き確認中
-                </span>
-              )}
             </div>
             <h1 className="mt-5 text-3xl font-black leading-tight text-[#143a6b] sm:text-5xl">
               {article.title}

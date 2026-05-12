@@ -48,7 +48,7 @@ export function getKijiArticles(): KijiArticle[] {
         title: data.title ?? fallbackSlug,
         description: data.description ?? "",
         category: data.category ?? "ビザ申請",
-        draft: true,
+        draft: false,
         body,
       };
     });

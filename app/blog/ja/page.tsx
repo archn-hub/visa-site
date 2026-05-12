@@ -6,11 +6,11 @@ import { getKijiArticles } from "../../_lib/kiji";
 import { phoneDisplay, phoneHref } from "../../_lib/site";
 
 export const metadata: Metadata = {
-  title: "ビザ申請コラム 下書き一覧",
-  description: "行政書士アーチ事務所のビザ申請・在留資格コラムの下書き確認ページです。",
+  title: "ビザ申請・在留資格コラム | 行政書士アーチ事務所",
+  description: "日本人配偶者ビザ、永住申請、就労ビザ、技術・人文知識・国際業務など、ビザ申請と在留資格の実務ポイントを行政書士アーチ事務所が解説します。",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 };
 
@@ -47,13 +47,13 @@ export default function JapaneseBlogIndexPage() {
 
       <section className="bg-[#dcecff] px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">BLOG DRAFTS</p>
+          <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">VISA COLUMN</p>
           <h1 className="mt-3 text-3xl font-black text-[#143a6b] sm:text-5xl">
-            日本語記事 下書き一覧
+            ビザ申請・在留資格コラム
           </h1>
           <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-700">
-            公開前確認用のページです。現在の記事は下書き扱いのため、検索エンジンには
-            index されない設定にしています。内容確認後に公開状態へ切り替えます。
+            日本人配偶者ビザ、永住申請、就労ビザ、技術・人文知識・国際業務など、
+            申請前に確認したいポイントを行政書士がわかりやすく整理しています。
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -80,18 +80,13 @@ export default function JapaneseBlogIndexPage() {
                 <span className="rounded-full bg-[#f4f8ff] px-3 py-1 text-xs font-black text-[#143a6b]">
                   {article.category}
                 </span>
-                {article.draft && (
-                  <span className="rounded-full bg-[#e96078]/10 px-3 py-1 text-xs font-black text-[#e3425d]">
-                    下書き
-                  </span>
-                )}
               </div>
               <h2 className="mt-4 text-xl font-black leading-8 text-[#143a6b]">
                 {article.title}
               </h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">{article.description}</p>
               <span className="mt-5 inline-flex text-sm font-black text-[#caa15a] transition group-hover:text-[#143a6b]">
-                記事を確認する
+                記事を読む
               </span>
             </Link>
           ))}
@@ -100,10 +95,10 @@ export default function JapaneseBlogIndexPage() {
 
       <section className="bg-[#143a6b] px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl rounded-[28px] border border-white/15 bg-white/10 p-8 text-center shadow-2xl">
-          <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">REVIEW</p>
-          <h2 className="mt-3 text-3xl font-black">公開前の記事確認</h2>
+          <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">CONTACT</p>
+          <h2 className="mt-3 text-3xl font-black">ビザ申請でお困りの方へ</h2>
           <p className="mt-4 text-sm leading-7 text-blue-50">
-            表現、料金、対応範囲に違和感がないか確認し、OKの記事から公開に切り替えます。
+            記事の内容に近い状況で不安がある場合は、現在の資料や事情を確認しながら申請方針を整理します。
           </p>
           <SocialContactButtons locale="ja" tone="dark" className="mt-7" />
         </div>

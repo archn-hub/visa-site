@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
-import { blogArticlesJa } from "./_data/blogJa";
 import { visaPages } from "./_data/visaPages";
 import { visaPagesEn } from "./_data/visaPagesEn";
 import { visaPagesZhCn } from "./_data/visaPagesZhCn";
+import { getKijiArticles } from "./_lib/kiji";
 import { absoluteUrl } from "./_lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const articles = getKijiArticles();
 
   return [
     {
@@ -63,7 +64,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),
-    ...blogArticlesJa
+    {
+      url: absoluteUrl("/blog/ja"),
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    },
+    ...articles
       .filter((article) => !article.draft)
       .map((article) => ({
         url: absoluteUrl(`/blog/ja/${article.slug}`),
