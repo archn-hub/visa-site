@@ -217,15 +217,14 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-3">
-              {["相談料"].map((label) => (
-                <div
-                  key={label}
-                  className="flex aspect-square max-h-36 flex-col items-center justify-center rounded-full border-2 border-[#e96078] bg-white text-center text-[#e3425d]"
-                >
-                  <span className="text-xs font-bold">{label}</span>
-                  <span className="mt-1 text-2xl font-black">0円</span>
-                </div>
-              ))}
+              <div className="flex aspect-square max-h-36 flex-col items-center justify-center rounded-full border-2 border-[#e96078] bg-white text-center text-[#e3425d]">
+                <span className="text-xs font-bold">相談料</span>
+                <span className="mt-1 text-2xl font-black">0円</span>
+              </div>
+              <div className="flex aspect-square max-h-36 flex-col items-center justify-center rounded-full border-2 border-[#e96078] bg-white text-center text-[#e3425d]">
+                <span className="text-xs font-bold tracking-[0.18em]">SINCE</span>
+                <span className="mt-1 text-2xl font-black">2010</span>
+              </div>
             </div>
           </div>
           <div className="flex items-center p-5 sm:p-8 lg:p-10">
