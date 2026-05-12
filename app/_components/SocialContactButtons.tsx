@@ -3,6 +3,7 @@ import { lineOfficialUrl, wechatId, wechatQrPath } from "../_lib/site";
 
 type Locale = "ja" | "en" | "zh";
 type Tone = "light" | "dark";
+type Size = "default" | "compact";
 
 const labels = {
   ja: {
@@ -12,8 +13,8 @@ const labels = {
     note: "WeChatでQRコードを読み取るか、上記IDを検索して追加してください。",
   },
   en: {
-    line: "LINE Consultation",
-    wechat: "WeChat Consultation",
+    line: "LINE",
+    wechat: "WeChat",
     id: "WeChat ID",
     note: "Scan the QR code in WeChat or search this ID to add us.",
   },
@@ -28,25 +29,29 @@ const labels = {
 export function SocialContactButtons({
   locale,
   tone = "dark",
+  size = "default",
   className = "",
 }: {
   locale: Locale;
   tone?: Tone;
+  size?: Size;
   className?: string;
 }) {
   const text = labels[locale];
-  const lineClass =
-    tone === "dark"
-      ? "rounded-full bg-[#06c755] px-7 py-4 text-sm font-black text-white transition hover:bg-[#05a948]"
-      : "rounded-full bg-[#06c755] px-7 py-4 text-sm font-black text-white transition hover:bg-[#05a948]";
-  const wechatSummaryClass =
-    tone === "dark"
-      ? "cursor-pointer list-none rounded-full bg-[#1aad19] px-7 py-4 text-center text-sm font-black text-white transition hover:bg-[#148f14]"
-      : "cursor-pointer list-none rounded-full bg-[#1aad19] px-7 py-4 text-center text-sm font-black text-white transition hover:bg-[#148f14]";
+  const buttonSize =
+    size === "compact"
+      ? "px-3 py-2 text-xs sm:px-4"
+      : "px-7 py-4 text-sm";
+  const panelPosition =
+    size === "compact"
+      ? "absolute right-0 top-full z-50 w-64"
+      : "";
+  const lineClass = `rounded-full bg-[#06c755] ${buttonSize} font-black text-white shadow-sm transition hover:bg-[#05a948]`;
+  const wechatSummaryClass = `cursor-pointer list-none rounded-full bg-[#1aad19] ${buttonSize} text-center font-black text-white shadow-sm transition hover:bg-[#148f14]`;
   const panelClass =
     tone === "dark"
-      ? "mt-3 rounded-2xl bg-white p-4 text-left text-[#0b2344] shadow-xl"
-      : "mt-3 rounded-2xl border border-slate-200 bg-white p-4 text-left text-[#0b2344] shadow-sm";
+      ? `${panelPosition} mt-3 rounded-2xl bg-white p-4 text-left text-[#0b2344] shadow-xl`
+      : `${panelPosition} mt-3 rounded-2xl border border-slate-200 bg-white p-4 text-left text-[#0b2344] shadow-xl`;
 
   return (
     <div className={`flex flex-col justify-center gap-3 sm:flex-row ${className}`}>

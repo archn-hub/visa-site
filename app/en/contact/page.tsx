@@ -49,6 +49,7 @@ export default function EnglishContactPage() {
             <Link href="/zh-cn/contact" className="text-xs font-black text-[#143a6b]">
               简体中文
             </Link>
+            <SocialContactButtons locale="en" tone="light" size="compact" />
             <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] sm:block">
               {phoneDisplay}
             </a>

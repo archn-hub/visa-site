@@ -137,6 +137,7 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
             <Link href={`/zh-cn/${page.slug}`} className="text-xs font-black text-[#143a6b]">
               简体中文
             </Link>
+            <SocialContactButtons locale="ja" tone="light" size="compact" />
             <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] md:inline">
               {phoneDisplay}
             </a>

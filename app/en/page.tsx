@@ -94,6 +94,7 @@ export default function EnglishHomePage() {
             <Link href="/zh-cn" className="text-xs font-black text-[#143a6b]">
               简体中文
             </Link>
+            <SocialContactButtons locale="en" tone="light" size="compact" />
             <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] md:inline">
               {phoneDisplay}
             </a>
