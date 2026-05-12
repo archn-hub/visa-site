@@ -8,7 +8,7 @@ import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 export const metadata: Metadata = {
   title: "日本签证・在留资格申请支持",
   description:
-    "行政书士Arch事务所为日本人配偶者签证、就劳签证、家族滞在签证、特定技能签证、永住、归化、经营管理签证提供中文咨询。事务所内有中文社劳士，也可简单咨询外国人雇用相关劳务社保问题。",
+    "行政书士Arch事务所为日本人配偶者签证、就劳签证、家族滞在签证、特定技能签证、永住、归化、经营管理签证提供中文咨询。事务所内也有可中文对应的社会保险劳务士，也可简单咨询外国人雇用相关劳务社保问题。",
   alternates: {
     canonical: "/zh-cn",
     languages: {
@@ -40,7 +40,7 @@ const strengths = [
   },
   {
     title: "社劳士在籍",
-    text: "事务所内有可用中文对应的社会保险劳务士，可简单咨询劳务社保问题。",
+    text: "事务所内也有可中文对应的社会保险劳务士，可简单咨询劳务社保问题。",
   },
   {
     title: "费用清楚",

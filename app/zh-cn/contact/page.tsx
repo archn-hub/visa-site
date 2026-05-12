@@ -80,7 +80,7 @@ export default function ChineseContactPage() {
             </h1>
             <p className="mt-5 text-sm leading-7 text-slate-700">
               请告诉我们您目前的情况。我们会整理可申请的手续、主要要件、必要材料和注意点。
-              事务所内有可用中文对应的社会保险劳务士，也可以简单咨询外国人雇用相关的劳务社保问题。
+              事务所内也有可中文对应的社会保险劳务士，也可以简单咨询外国人雇用相关的劳务社保问题。
             </p>
             <div className="mt-8 rounded-[24px] bg-[#143a6b] p-6 text-white">
               <p className="text-sm font-black tracking-[0.18em] text-[#caa15a]">PHONE</p>

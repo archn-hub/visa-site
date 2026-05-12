@@ -211,7 +211,7 @@ export function ChineseVisaDetailPage({ page }: { page: VisaPage }) {
       <Section eyebrow="LABOR" title="中文社劳士也在事务所内" muted>
         <div className="rounded-2xl bg-white p-6 shadow-sm">
           <p className="text-sm leading-7 text-slate-700">
-            本事务所内有可用中文对应的社会保险劳务士。除了签证申请外，
+            事务所内也有可中文对应的社会保险劳务士。除了签证申请外，
             外国人雇用时的劳动条件、社会保险、雇用保险、工资制度、入退社手续等
             基础劳务问题也可以简单咨询。需要专业社劳士业务时，我们会与社劳士一起整理方向。
           </p>
