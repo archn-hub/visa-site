@@ -45,6 +45,22 @@ export default function JapaneseBlogIndexPage() {
         </div>
       </header>
 
+      <nav aria-label="パンくずリスト" className="border-b border-slate-200 bg-white px-4 py-3 sm:px-6 lg:px-8">
+        <ol className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 text-xs font-bold text-slate-500 sm:text-sm">
+          <li>
+            <Link href="/" className="text-[#143a6b] transition hover:text-[#0b2344]">
+              ホーム
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-slate-300">
+            /
+          </li>
+          <li aria-current="page" className="text-slate-700">
+            コラム
+          </li>
+        </ol>
+      </nav>
+
       <section className="bg-[#dcecff] px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">VISA COLUMN</p>
