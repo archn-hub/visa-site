@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BackToTopButton } from "../../_components/BackToTopButton";
 import { SocialContactButtons } from "../../_components/SocialContactButtons";
-import { blogArticlesJa } from "../../_data/blogJa";
+import { getKijiArticles } from "../../_lib/kiji";
 import { phoneDisplay, phoneHref } from "../../_lib/site";
 
 export const metadata: Metadata = {
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   },
 };
 
-const categories = Array.from(new Set(blogArticlesJa.map((article) => article.category)));
+const articles = getKijiArticles();
+const categories = Array.from(new Set(articles.map((article) => article.category)));
 
 export default function JapaneseBlogIndexPage() {
   return (
@@ -69,7 +70,7 @@ export default function JapaneseBlogIndexPage() {
 
       <section className="px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {blogArticlesJa.map((article) => (
+          {articles.map((article) => (
             <Link
               key={article.slug}
               href={`/blog/ja/${article.slug}`}

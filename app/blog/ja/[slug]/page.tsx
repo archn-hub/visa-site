@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BackToTopButton } from "../../../_components/BackToTopButton";
 import { SocialContactButtons } from "../../../_components/SocialContactButtons";
-import { blogArticlesJa, getBlogArticleJa } from "../../../_data/blogJa";
+import { getKijiArticle, getKijiArticles, getServiceForCategory, RenderKijiBody } from "../../../_lib/kiji";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../../../_lib/site";
 
 type PageProps = {
@@ -11,12 +11,12 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return blogArticlesJa.map((article) => ({ slug: article.slug }));
+  return getKijiArticles().map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getBlogArticleJa(slug);
+  const article = getKijiArticle(slug);
 
   if (!article) return {};
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       absolute: `${article.title} | ${siteName}`,
     },
     description: article.description,
-    keywords: [article.category, article.serviceLabel, "ビザ申請", "行政書士"],
+    keywords: [article.category, "ビザ申請", "在留資格", "行政書士"],
     alternates: {
       canonical: `/blog/ja/${article.slug}`,
     },
@@ -51,10 +51,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function JapaneseBlogArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const article = getBlogArticleJa(slug);
+  const article = getKijiArticle(slug);
 
   if (!article) notFound();
 
+  const service = getServiceForCategory(article.category);
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -144,77 +145,8 @@ export default async function JapaneseBlogArticlePage({ params }: PageProps) {
 
         <section className="px-4 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_320px]">
-            <div className="space-y-10">
-              <section>
-                <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">POINT</p>
-                <h2 className="mt-3 text-2xl font-black text-[#143a6b]">この記事の要点</h2>
-                <div className="mt-5 space-y-4">
-                  {article.points.map((point) => (
-                    <p key={point} className="rounded-2xl bg-[#f8fbff] p-5 text-sm leading-7 text-slate-700">
-                      {point}
-                    </p>
-                  ))}
-                </div>
-              </section>
-
-              <section>
-                <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">DOCUMENTS</p>
-                <h2 className="mt-3 text-2xl font-black text-[#143a6b]">準備したい主な資料</h2>
-                <ul className="mt-5 grid gap-4 md:grid-cols-2">
-                  {article.documents.map((document) => (
-                    <li key={document} className="rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-7 text-slate-700 shadow-sm">
-                      {document}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <section>
-                <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">RISK</p>
-                <h2 className="mt-3 text-2xl font-black text-[#143a6b]">よくある注意点</h2>
-                <ul className="mt-5 grid gap-4 md:grid-cols-2">
-                  {article.risks.map((risk) => (
-                    <li key={risk} className="rounded-2xl border border-[#e96078]/20 bg-[#fff8fa] p-5 text-sm leading-7 text-slate-700">
-                      {risk}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <section>
-                <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">CONSULTATION</p>
-                <h2 className="mt-3 text-2xl font-black text-[#143a6b]">相談した方がよいケース</h2>
-                <div className="mt-5 space-y-3">
-                  {article.consultation.map((item) => (
-                    <p key={item} className="border-l-4 border-[#143a6b] bg-[#f8fbff] p-4 text-sm font-bold leading-7 text-slate-700">
-                      {item}
-                    </p>
-                  ))}
-                </div>
-              </section>
-
-              <section className="rounded-[28px] bg-[#143a6b] p-8 text-white">
-                <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">SUPPORT</p>
-                <h2 className="mt-3 text-2xl font-black">行政書士アーチ事務所のサポート</h2>
-                <p className="mt-4 text-sm leading-7 text-blue-50">
-                  申請の見込み、必要書類、不利になりやすい事情を確認し、理由書や説明資料まで整理します。
-                  中国語対応や社労士連携が必要な場合も、状況に応じて一緒に確認できます。
-                </p>
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <Link
-                    href="/contact"
-                    className="rounded-full bg-white px-7 py-4 text-center text-sm font-black text-[#143a6b] transition hover:bg-[#eef6ff]"
-                  >
-                    無料相談する
-                  </Link>
-                  <Link
-                    href={article.serviceHref}
-                    className="rounded-full bg-[#caa15a] px-7 py-4 text-center text-sm font-black text-white transition hover:bg-[#b58a42]"
-                  >
-                    {article.serviceLabel}を見る
-                  </Link>
-                </div>
-              </section>
+            <div className="min-w-0">
+              <RenderKijiBody body={article.body} />
             </div>
 
             <aside className="space-y-5">
@@ -229,10 +161,10 @@ export default async function JapaneseBlogArticlePage({ params }: PageProps) {
               <div className="rounded-2xl bg-[#f4f8ff] p-5">
                 <p className="text-sm font-black text-[#143a6b]">関連サービス</p>
                 <Link
-                  href={article.serviceHref}
+                  href={service.href}
                   className="mt-3 block text-lg font-black leading-7 text-[#143a6b] transition hover:text-[#0b2344]"
                 >
-                  {article.serviceLabel}
+                  {service.label}
                 </Link>
               </div>
             </aside>
