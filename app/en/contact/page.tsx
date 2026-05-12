@@ -38,7 +38,10 @@ export default function EnglishContactPage() {
             </span>
           </Link>
           <div className="flex items-center gap-3">
-            <Link href="/contact" className="text-xs font-black text-[#143a6b]">
+            <Link
+              href="/contact"
+              className="rounded-full bg-[#caa15a] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#b58a42]"
+            >
               日本語
             </Link>
             <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] sm:block">

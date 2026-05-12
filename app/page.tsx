@@ -153,7 +153,10 @@ export default function Home() {
             </span>
           </a>
           <div className="hidden items-center gap-5 md:flex">
-            <Link href="/en" className="text-sm font-black text-[#143a6b]">
+            <Link
+              href="/en"
+              className="rounded-full bg-[#caa15a] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#b58a42]"
+            >
               English
             </Link>
             <a href={phoneHref} className="text-xl font-black text-[#143a6b]">

@@ -90,7 +90,10 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
             </span>
           </Link>
           <div className="flex items-center gap-3">
-            <Link href={`/${page.slug}`} className="text-xs font-black text-[#143a6b]">
+            <Link
+              href={`/${page.slug}`}
+              className="rounded-full bg-[#caa15a] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#b58a42]"
+            >
               日本語
             </Link>
             <a
