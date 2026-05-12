@@ -175,8 +175,9 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
               简体中文
             </Link>
             <SocialContactButtons locale="ja" tone="light" size="compact" />
-            <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] md:inline">
-              {phoneDisplay}
+            <a href={phoneHref} className="rounded-full border border-[#143a6b]/15 bg-white px-3 py-2 text-sm font-black text-[#143a6b] shadow-sm transition hover:bg-[#f4f8ff] md:border-0 md:bg-transparent md:px-0 md:py-0 md:text-xl md:shadow-none">
+              <span className="md:hidden">電話</span>
+              <span className="hidden md:inline">{phoneDisplay}</span>
             </a>
             <a
               href="/contact"
