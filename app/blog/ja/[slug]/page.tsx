@@ -55,6 +55,11 @@ export default async function JapaneseBlogArticlePage({ params }: PageProps) {
 
   if (!article) notFound();
 
+  const allArticles = getKijiArticles();
+  const relatedArticles = [
+    ...allArticles.filter((item) => item.slug !== article.slug && item.category === article.category),
+    ...allArticles.filter((item) => item.slug !== article.slug && item.category !== article.category),
+  ].slice(0, 3);
   const service = getServiceForCategory(article.category);
   const structuredData = {
     "@context": "https://schema.org",
@@ -147,6 +152,37 @@ export default async function JapaneseBlogArticlePage({ params }: PageProps) {
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_320px]">
             <div className="min-w-0">
               <RenderKijiBody body={article.body} />
+
+              {relatedArticles.length > 0 && (
+                <section className="mt-14 border-t border-slate-200 pt-10" aria-labelledby="related-articles">
+                  <p className="text-sm font-black tracking-[0.18em] text-[#caa15a]">RELATED ARTICLES</p>
+                  <h2 id="related-articles" className="mt-3 text-2xl font-black text-[#143a6b]">
+                    関連記事
+                  </h2>
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {relatedArticles.map((relatedArticle) => (
+                      <Link
+                        key={relatedArticle.slug}
+                        href={`/blog/ja/${relatedArticle.slug}`}
+                        className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[#143a6b]/30 hover:shadow-md"
+                      >
+                        <span className="w-fit rounded-full bg-[#f4f8ff] px-3 py-1 text-xs font-black text-[#143a6b]">
+                          {relatedArticle.category}
+                        </span>
+                        <span className="mt-4 text-base font-black leading-7 text-[#143a6b] transition group-hover:text-[#0b2344]">
+                          {relatedArticle.title}
+                        </span>
+                        <span className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600">
+                          {relatedArticle.description}
+                        </span>
+                        <span className="mt-auto pt-4 text-sm font-black text-[#e96078]">
+                          記事を読む
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
 
             <aside className="space-y-5">
