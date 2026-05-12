@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import type { VisaPage } from "../_data/visaPages";
+import { SocialContactButtons } from "./SocialContactButtons";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 
 function Section({
@@ -301,6 +302,7 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
               メールで問い合わせる
             </a>
           </div>
+          <SocialContactButtons locale="ja" tone="dark" className="mt-3" />
         </div>
       </section>
       <BackToTopButton />

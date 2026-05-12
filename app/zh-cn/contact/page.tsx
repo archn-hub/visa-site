@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { SocialContactButtons } from "../../_components/SocialContactButtons";
 import { ChineseContactForm } from "./ChineseContactForm";
 import { phoneDisplay, phoneHref, siteName } from "../../_lib/site";
 
@@ -84,6 +85,7 @@ export default function ChineseContactPage() {
               <p className="mt-3 text-sm leading-7 text-blue-50">
                 如有紧急事项，也可以通过电话咨询。
               </p>
+              <SocialContactButtons locale="zh" tone="dark" className="mt-5" />
             </div>
           </div>
 

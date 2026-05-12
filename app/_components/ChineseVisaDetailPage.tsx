@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import type { VisaPage } from "../_data/visaPages";
+import { SocialContactButtons } from "./SocialContactButtons";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 
 function Section({
@@ -249,6 +250,7 @@ export function ChineseVisaDetailPage({ page }: { page: VisaPage }) {
               表单咨询
             </Link>
           </div>
+          <SocialContactButtons locale="zh" tone="dark" className="mt-3" />
         </div>
       </section>
       <BackToTopButton />

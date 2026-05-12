@@ -9,6 +9,9 @@ export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? vercelProductionUrl ?? "http://localhost:3000";
 export const phoneDisplay = "0120-77-9885";
 export const phoneHref = "tel:0120779885";
+export const wechatId = "ukaye924";
+export const wechatQrPath = "/wechat-qr.jpeg";
+export const lineOfficialUrl = "https://lin.ee/TG1wXJE";
 
 export function absoluteUrl(path = "/") {
   return new URL(path, siteUrl).toString();

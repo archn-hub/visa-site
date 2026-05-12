@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { SocialContactButtons } from "../_components/SocialContactButtons";
 import { visaPagesEn } from "../_data/visaPagesEn";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 
@@ -246,6 +247,7 @@ export default function EnglishHomePage() {
               Contact Form
             </Link>
           </div>
+          <SocialContactButtons locale="en" tone="dark" className="mt-3" />
         </div>
       </section>
     </main>

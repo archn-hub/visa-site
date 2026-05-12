@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { SocialContactButtons } from "../_components/SocialContactButtons";
 import { visaPagesZhCn } from "../_data/visaPagesZhCn";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 
@@ -245,6 +246,7 @@ export default function ChineseHomePage() {
               表单咨询
             </Link>
           </div>
+          <SocialContactButtons locale="zh" tone="dark" className="mt-3" />
         </div>
       </section>
     </main>

@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { SocialContactButtons } from "../../_components/SocialContactButtons";
 import { EnglishContactForm } from "./EnglishContactForm";
 import { phoneDisplay, phoneHref, siteName } from "../../_lib/site";
 
@@ -84,6 +85,7 @@ export default function EnglishContactPage() {
               <p className="mt-3 text-sm leading-7 text-blue-50">
                 If your matter is urgent, please contact us by phone.
               </p>
+              <SocialContactButtons locale="en" tone="dark" className="mt-5" />
             </div>
           </div>
 

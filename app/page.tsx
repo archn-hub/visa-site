@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { SocialContactButtons } from "./_components/SocialContactButtons";
 import { absoluteUrl, phoneDisplay, phoneHref, siteDescription, siteName } from "./_lib/site";
 
 export const metadata: Metadata = {
@@ -373,6 +374,7 @@ export default function Home() {
               問い合わせボタン
             </a>
           </div>
+          <SocialContactButtons locale="ja" tone="dark" className="mt-3" />
         </div>
       </section>
       <BackToTopButton />
