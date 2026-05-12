@@ -40,6 +40,7 @@ const statusOptions = [
   "Student",
   "Engineer/Specialist in Humanities/International Services",
   "Dependent",
+  "Specified Skilled Worker",
   "Spouse of Japanese National",
   "Permanent Resident",
   "Long-Term Resident",

@@ -8,7 +8,7 @@ import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 export const metadata: Metadata = {
   title: "日本签证・在留资格申请支持",
   description:
-    "行政书士Arch事务所为日本人配偶者签证、就劳签证、技术・人文知识・国际业务、永住、归化、经营管理签证提供中文咨询。事务所内有中文社劳士，也可简单咨询外国人雇用相关劳务社保问题。",
+    "行政书士Arch事务所为日本人配偶者签证、就劳签证、家族滞在签证、特定技能签证、永住、归化、经营管理签证提供中文咨询。事务所内有中文社劳士，也可简单咨询外国人雇用相关劳务社保问题。",
   alternates: {
     canonical: "/zh-cn",
     languages: {
@@ -124,7 +124,7 @@ export default function ChineseHomePage() {
                 免费初次咨询，中文对应
               </p>
               <p className="mt-3 text-sm leading-7 text-blue-50">
-                从日本人配偶者签证、就劳签证到永住、归化、经营管理签证，
+                从日本人配偶者签证、就劳签证、家族滞在签证、特定技能签证到永住、归化、经营管理签证，
                 我们会根据您的情况整理申请方向和必要材料。
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">

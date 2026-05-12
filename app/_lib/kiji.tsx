@@ -68,6 +68,12 @@ export function getServiceForCategory(category: string) {
   if (category.includes("帰化")) {
     return { href: "/naturalization", label: "帰化申請" };
   }
+  if (category.includes("家族滞在")) {
+    return { href: "/family-stay", label: "家族滞在ビザ" };
+  }
+  if (category.includes("特定技能")) {
+    return { href: "/specified-skilled-worker", label: "特定技能ビザ" };
+  }
   if (category.includes("技人国") || category.includes("就労") || category.includes("外国人雇用")) {
     return { href: "/engineer-visa", label: "就労ビザ・技人国ビザ" };
   }

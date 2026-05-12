@@ -8,7 +8,7 @@ import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 export const metadata: Metadata = {
   title: "Japan Visa and Residence Status Support",
   description:
-    "Gyoseishoshi Arch Office provides nationwide support for Japanese spouse visas, work visas, permanent residence, naturalization, and business manager visas in Japan.",
+    "Gyoseishoshi Arch Office provides nationwide support for Japanese spouse visas, work visas, dependent visas, specified skilled worker visas, permanent residence, naturalization, and business manager visas in Japan.",
   alternates: {
     canonical: "/en",
     languages: {
@@ -125,8 +125,8 @@ export default function EnglishHomePage() {
                 Free initial consultation and clear fee guidance
               </p>
               <p className="mt-3 text-sm leading-7 text-blue-50">
-                From Japanese spouse visas and work visas to permanent residence, naturalization,
-                and business manager visas, we organize a clear path toward approval.
+                From Japanese spouse visas and work visas to dependent visas, specified skilled worker visas,
+                permanent residence, naturalization, and business manager visas, we organize a clear path toward approval.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <Link

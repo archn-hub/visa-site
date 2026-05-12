@@ -44,6 +44,8 @@ function getRelatedArticles(pageSlug: string) {
     "spouse-visa": ["配偶者"],
     "work-visa": ["外国人雇用", "留学生", "採用", "就労"],
     "engineer-visa": ["技人国", "技術・人文知識", "就労"],
+    "family-stay": ["家族滞在", "扶養", "配偶者"],
+    "specified-skilled-worker": ["特定技能", "外国人雇用", "採用", "就労"],
     "permanent-residence": ["永住"],
     naturalization: ["帰化"],
     "business-manager": ["経営管理", "経営"],
