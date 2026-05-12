@@ -1,6 +1,5 @@
 ﻿import Link from "next/link";
 import type { VisaPage } from "../_data/visaPages";
-import { getKijiArticles } from "../_lib/kiji";
 import { SocialContactButtons } from "./SocialContactButtons";
 import { absoluteUrl, phoneDisplay, phoneHref, siteName } from "../_lib/site";
 
@@ -38,32 +37,6 @@ function BulletGrid({ items }: { items: string[] }) {
   );
 }
 
-function getRelatedArticles(pageSlug: string) {
-  const articles = getKijiArticles();
-  const matchers: Record<string, string[]> = {
-    "spouse-visa": ["配偶者"],
-    "work-visa": ["外国人雇用", "留学生", "採用", "就労"],
-    "engineer-visa": ["技人国", "技術・人文知識", "就労"],
-    "family-stay": ["家族滞在", "扶養", "配偶者"],
-    "specified-skilled-worker": ["特定技能", "外国人雇用", "採用", "就労"],
-    "permanent-residence": ["永住"],
-    naturalization: ["帰化"],
-    "business-manager": ["経営管理", "経営"],
-  };
-  const keywords = matchers[pageSlug] ?? [];
-
-  return articles
-    .map((article) => {
-      const haystack = `${article.category} ${article.title} ${article.description}`;
-      const score = keywords.findIndex((keyword) => haystack.includes(keyword));
-      return { article, score };
-    })
-    .filter(({ score }) => score >= 0)
-    .sort((a, b) => a.score - b.score)
-    .map(({ article }) => article)
-    .slice(0, 4);
-}
-
 function BackToTopButton() {
   return (
     <a
@@ -78,7 +51,6 @@ function BackToTopButton() {
 
 export function VisaDetailPage({ page }: { page: VisaPage }) {
   const pageUrl = absoluteUrl(`/${page.slug}`);
-  const relatedArticles = getRelatedArticles(page.slug);
   const structuredData = [
     {
       "@context": "https://schema.org",
@@ -135,17 +107,6 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
           "@type": "Answer",
           text: faq.a,
         },
-      })),
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: `${page.title}に関連するコラム`,
-      itemListElement: relatedArticles.map((article, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        url: absoluteUrl(`/blog/ja/${article.slug}`),
-        name: article.title,
       })),
     },
   ];
@@ -321,32 +282,19 @@ export function VisaDetailPage({ page }: { page: VisaPage }) {
         </div>
       </Section>
 
-      {relatedArticles.length > 0 && (
-        <Section eyebrow="RELATED COLUMN" title={`${page.title}に関するコラム`} muted>
-          <div className="grid gap-4 md:grid-cols-2">
-            {relatedArticles.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/blog/ja/${article.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-[#143a6b]/35 hover:shadow-md"
-              >
-                <span className="w-fit rounded-full bg-[#f4f8ff] px-3 py-1 text-xs font-black text-[#143a6b]">
-                  {article.category}
-                </span>
-                <h3 className="mt-4 text-lg font-black leading-7 text-[#143a6b] transition group-hover:text-[#0b2344]">
-                  {article.title}
-                </h3>
-                <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600">
-                  {article.description}
-                </p>
-                <span className="mt-auto pt-4 text-sm font-black text-[#caa15a] transition group-hover:text-[#143a6b]">
-                  記事を読む
-                </span>
-              </Link>
-            ))}
-          </div>
-        </Section>
-      )}
+      <Section eyebrow="COLUMN" title="ビザ申請・在留資格コラム" muted>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <p className="text-sm leading-7 text-slate-600">
+            申請前に確認したいポイントは、コラム一覧でまとめて確認できます。
+          </p>
+          <Link
+            href="/blog/ja"
+            className="mt-5 inline-flex rounded-full bg-[#143a6b] px-6 py-3 text-sm font-black text-white transition hover:bg-[#0b2344]"
+          >
+            コラム一覧を見る
+          </Link>
+        </div>
+      </Section>
 
       <section id="contact" className="bg-[#143a6b] px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl rounded-[28px] border border-white/15 bg-white/10 p-8 text-center shadow-2xl">
