@@ -86,9 +86,24 @@ function renderInline(text: string) {
   });
 }
 
+function isTableSeparator(line: string) {
+  const cells = line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+
+  return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell));
+}
+
 function renderTable(lines: string[], key: string) {
-  const rows = lines
-    .filter((line) => !/^\|\s*-/.test(line))
+  const tableLines = lines
+    .flatMap((line) => line.split(/\r?\n/))
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("|") && !isTableSeparator(line));
+
+  const rows = tableLines
     .map((line) =>
       line
         .split("|")
@@ -100,12 +115,12 @@ function renderTable(lines: string[], key: string) {
   const [head, ...body] = rows;
 
   return (
-    <div key={key} className="my-7 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <table className="w-full border-collapse text-left text-sm">
+    <div key={key} className="my-7 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <table className="min-w-[640px] w-full border-collapse text-left text-sm">
         <thead className="bg-[#f4f8ff] text-[#143a6b]">
           <tr>
             {head.map((cell) => (
-              <th key={cell} className="border-b border-slate-200 px-4 py-3 font-black">
+              <th key={cell} className="whitespace-normal border-b border-slate-200 px-4 py-3 align-top font-black">
                 {renderInline(cell)}
               </th>
             ))}
@@ -115,7 +130,7 @@ function renderTable(lines: string[], key: string) {
           {body.map((row, rowIndex) => (
             <tr key={rowIndex} className="border-b border-slate-100 last:border-b-0">
               {row.map((cell, cellIndex) => (
-                <td key={`${rowIndex}-${cellIndex}`} className="px-4 py-3 leading-7 text-slate-700">
+                <td key={`${rowIndex}-${cellIndex}`} className="whitespace-normal px-4 py-3 align-top leading-7 text-slate-700">
                   {renderInline(cell)}
                 </td>
               ))}
@@ -149,6 +164,7 @@ export function RenderKijiBody({ body }: { body: string }) {
     const key = `block-${index}`;
 
     if (block === "---") continue;
+    if (block === ":::") continue;
     if (block.startsWith("# ")) continue;
 
     if (block.startsWith("## ")) {
@@ -218,9 +234,7 @@ export function RenderKijiBody({ body }: { body: string }) {
     }
 
     if (block.startsWith("|")) {
-      const tableLines = [block, ...blocks.slice(index + 1).filter((line) => line.startsWith("|"))];
-      rendered.push(renderTable(tableLines, key));
-      index += tableLines.length - 1;
+      rendered.push(renderTable(block.split(/\r?\n/), key));
       continue;
     }
 
