@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SocialContactButtons } from "./_components/SocialContactButtons";
+import { getKijiArticles } from "./_lib/kiji";
 import { absoluteUrl, phoneDisplay, phoneHref, siteDescription, siteName } from "./_lib/site";
 
 export const metadata: Metadata = {
@@ -80,6 +81,18 @@ const faqs = [
   },
 ];
 
+function getFeaturedArticles() {
+  const articles = getKijiArticles();
+  const firstByCategory = Array.from(
+    new Map(articles.map((article) => [article.category, article])).values(),
+  );
+  const filled = [...firstByCategory, ...articles].filter(
+    (article, index, list) => list.findIndex((item) => item.slug === article.slug) === index,
+  );
+
+  return filled.slice(0, 6);
+}
+
 function HeroIllustration() {
   return (
     <svg viewBox="0 0 620 360" className="h-auto w-full" aria-hidden="true">
@@ -126,17 +139,31 @@ function BackToTopButton() {
 }
 
 export default function Home() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "LegalService",
-    name: siteName,
-    description: siteDescription,
-    url: absoluteUrl("/"),
-    telephone: phoneDisplay,
-    areaServed: "JP",
-    serviceType: services.map((service) => service.title),
-    priceRange: "88,000円〜440,000円",
-  };
+  const featuredArticles = getFeaturedArticles();
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      name: siteName,
+      description: siteDescription,
+      url: absoluteUrl("/"),
+      telephone: phoneDisplay,
+      areaServed: "JP",
+      serviceType: services.map((service) => service.title),
+      priceRange: "88,000円〜440,000円",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "ビザ申請・在留資格コラム",
+      itemListElement: featuredArticles.map((article, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: absoluteUrl(`/blog/ja/${article.slug}`),
+        name: article.title,
+      })),
+    },
+  ];
 
   return (
     <main id="page-top" className="bg-white text-[#0b2344]">
@@ -163,6 +190,12 @@ export default function Home() {
             </Link>
             <Link href="/zh-cn" className="text-xs font-black text-[#143a6b]">
               简体中文
+            </Link>
+            <Link
+              href="/blog/ja"
+              className="rounded-full border border-[#143a6b]/15 bg-white px-4 py-2 text-sm font-black text-[#143a6b] transition hover:bg-[#f4f8ff]"
+            >
+              コラム
             </Link>
             <SocialContactButtons locale="ja" tone="light" size="compact" />
             <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] md:inline">
@@ -266,6 +299,50 @@ export default function Home() {
                 </p>
                 <span className="mt-5 inline-flex text-sm font-black text-[#caa15a] transition group-hover:text-[#143a6b]">
                   詳細を見る
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f4f8ff] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">VISA COLUMN</p>
+              <h2 className="mt-3 text-3xl font-black text-[#143a6b]">
+                ビザ申請・在留資格コラム
+              </h2>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">
+                日本人配偶者ビザ、永住申請、就労ビザ、外国人雇用など、申請前に確認したい実務ポイントを整理しています。
+              </p>
+            </div>
+            <Link
+              href="/blog/ja"
+              className="inline-flex w-fit rounded-full bg-[#143a6b] px-6 py-3 text-sm font-black text-white transition hover:bg-[#0b2344]"
+            >
+              コラム一覧を見る
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {featuredArticles.map((article) => (
+              <Link
+                key={article.slug}
+                href={`/blog/ja/${article.slug}`}
+                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#143a6b]/35 hover:shadow-[0_20px_48px_rgba(11,35,68,0.12)]"
+              >
+                <span className="w-fit rounded-full bg-[#f4f8ff] px-3 py-1 text-xs font-black text-[#143a6b]">
+                  {article.category}
+                </span>
+                <h3 className="mt-4 text-lg font-black leading-7 text-[#143a6b] transition group-hover:text-[#0b2344]">
+                  {article.title}
+                </h3>
+                <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600">
+                  {article.description}
+                </p>
+                <span className="mt-auto pt-5 text-sm font-black text-[#caa15a] transition group-hover:text-[#143a6b]">
+                  記事を読む
                 </span>
               </Link>
             ))}
