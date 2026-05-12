@@ -13,6 +13,10 @@ export function createVisaMetadata(page: VisaPage): Metadata {
     keywords: page.keywords,
     alternates: {
       canonical: path,
+      languages: {
+        ja: path,
+        en: `/en/${page.slug}`,
+      },
     },
     openGraph: {
       title: page.metaTitle,

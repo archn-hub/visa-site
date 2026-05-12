@@ -8,6 +8,10 @@ export const metadata: Metadata = {
     "行政書士アーチ事務所は、配偶者ビザ、就労ビザ、技術・人文知識・国際業務、永住申請、帰化申請、経営管理ビザを全国対応でサポートします。",
   alternates: {
     canonical: "/",
+    languages: {
+      ja: "/",
+      en: "/en",
+    },
   },
 };
 
@@ -149,6 +153,9 @@ export default function Home() {
             </span>
           </a>
           <div className="hidden items-center gap-5 md:flex">
+            <Link href="/en" className="text-sm font-black text-[#143a6b]">
+              English
+            </Link>
             <a href={phoneHref} className="text-xl font-black text-[#143a6b]">
               {phoneDisplay}
             </a>
