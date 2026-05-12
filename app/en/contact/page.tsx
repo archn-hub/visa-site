@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     languages: {
       ja: "/contact",
       en: "/en/contact",
+      "zh-CN": "/zh-cn/contact",
     },
   },
   openGraph: {
@@ -43,6 +44,9 @@ export default function EnglishContactPage() {
               className="rounded-full bg-[#caa15a] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#b58a42]"
             >
               日本語
+            </Link>
+            <Link href="/zh-cn/contact" className="text-xs font-black text-[#143a6b]">
+              简体中文
             </Link>
             <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] sm:block">
               {phoneDisplay}

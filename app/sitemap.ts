@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { visaPages } from "./_data/visaPages";
 import { visaPagesEn } from "./_data/visaPagesEn";
+import { visaPagesZhCn } from "./_data/visaPagesZhCn";
 import { absoluteUrl } from "./_lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -31,6 +32,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: absoluteUrl("/zh-cn"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: absoluteUrl("/zh-cn/contact"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...Object.values(visaPages).map((page) => ({
       url: absoluteUrl(`/${page.slug}`),
       lastModified: now,
@@ -39,6 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...Object.values(visaPagesEn).map((page) => ({
       url: absoluteUrl(`/en/${page.slug}`),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
+    ...Object.values(visaPagesZhCn).map((page) => ({
+      url: absoluteUrl(`/zh-cn/${page.slug}`),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.75,

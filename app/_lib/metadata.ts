@@ -16,6 +16,7 @@ export function createVisaMetadata(page: VisaPage): Metadata {
       languages: {
         ja: path,
         en: `/en/${page.slug}`,
+        "zh-CN": `/zh-cn/${page.slug}`,
       },
     },
     openGraph: {

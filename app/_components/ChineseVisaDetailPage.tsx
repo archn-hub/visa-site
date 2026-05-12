@@ -36,19 +36,31 @@ function BulletGrid({ items }: { items: string[] }) {
   );
 }
 
-export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
-  const pageUrl = absoluteUrl(`/en/${page.slug}`);
+function BackToTopButton() {
+  return (
+    <a
+      href="#page-top"
+      aria-label="返回页面上方"
+      className="fixed bottom-5 right-5 z-40 rounded-full border border-white/20 bg-[#143a6b] px-5 py-3 text-sm font-black text-white shadow-[0_16px_40px_rgba(11,35,68,0.25)] transition hover:bg-[#0b2344] focus:outline-none focus:ring-4 focus:ring-[#caa15a]/30"
+    >
+      上方
+    </a>
+  );
+}
+
+export function ChineseVisaDetailPage({ page }: { page: VisaPage }) {
+  const pageUrl = absoluteUrl(`/zh-cn/${page.slug}`);
   const structuredData = [
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: `${page.title} Application Support`,
+      name: `${page.title}申请支持`,
       description: page.metaDescription,
       provider: {
         "@type": "LegalService",
         name: siteName,
         telephone: phoneDisplay,
-        url: absoluteUrl("/en"),
+        url: absoluteUrl("/zh-cn"),
       },
       areaServed: "JP",
       url: pageUrl,
@@ -81,12 +93,12 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
       />
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/en" className="flex flex-col leading-tight">
+          <Link href="/zh-cn" className="flex flex-col leading-tight">
             <span className="text-sm font-black tracking-[0.18em] text-[#143a6b]">
-              Gyoseishoshi Arch Office
+              行政书士Arch事务所
             </span>
             <span className="text-xs font-bold text-slate-500">
-              Japan visa and residence status support
+              日本签证・在留资格・劳务社保咨询
             </span>
           </Link>
           <div className="flex items-center gap-3">
@@ -96,30 +108,27 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
             >
               日本語
             </Link>
-            <Link href={`/zh-cn/${page.slug}`} className="text-xs font-black text-[#143a6b]">
-              简体中文
+            <Link href={`/en/${page.slug}`} className="text-xs font-black text-[#143a6b]">
+              English
             </Link>
-            <a
-              href={phoneHref}
-              className="hidden text-xl font-black text-[#143a6b] md:inline"
-            >
+            <a href={phoneHref} className="hidden text-xl font-black text-[#143a6b] md:inline">
               {phoneDisplay}
             </a>
             <Link
-              href="/en/contact"
+              href="/zh-cn/contact"
               className="rounded-full bg-[#143a6b] px-4 py-2 text-sm font-black text-white transition hover:bg-[#0b2344]"
             >
-              Contact
+              咨询
             </Link>
           </div>
         </div>
       </header>
 
-      <nav aria-label="Breadcrumb" className="border-b border-slate-200 bg-white px-4 py-3 sm:px-6 lg:px-8">
+      <nav aria-label="面包屑导航" className="border-b border-slate-200 bg-white px-4 py-3 sm:px-6 lg:px-8">
         <ol className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 text-xs font-bold text-slate-500 sm:text-sm">
           <li>
-            <Link href="/en" className="text-[#143a6b] transition hover:text-[#0b2344]">
-              Home
+            <Link href="/zh-cn" className="text-[#143a6b] transition hover:text-[#0b2344]">
+              首页
             </Link>
           </li>
           <li aria-hidden="true" className="text-slate-300">/</li>
@@ -140,16 +149,16 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700">{page.description}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/en/contact"
+                href="/zh-cn/contact"
                 className="rounded-full bg-[#143a6b] px-7 py-4 text-center text-sm font-black text-white transition hover:bg-[#0b2344]"
               >
-                Request Consultation
+                免费咨询
               </Link>
               <Link
-                href="/en#services"
+                href="/zh-cn#services"
                 className="rounded-full border border-[#143a6b]/25 bg-white px-7 py-4 text-center text-sm font-black text-[#143a6b] transition hover:bg-[#f4f8ff]"
               >
-                Back to Services
+                返回服务列表
               </Link>
             </div>
           </div>
@@ -163,7 +172,7 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
         </div>
       </section>
 
-      <Section eyebrow="OVERVIEW" title="Overview">
+      <Section eyebrow="OVERVIEW" title="签证概要">
         <div className="space-y-4">
           {page.overview.map((item) => (
             <p key={item} className="rounded-2xl bg-[#f8fbff] p-5 text-sm leading-7 text-slate-700">
@@ -173,19 +182,19 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
         </div>
       </Section>
 
-      <Section eyebrow="REQUIREMENTS" title="Main Requirements" muted>
+      <Section eyebrow="REQUIREMENTS" title="主要要件" muted>
         <BulletGrid items={page.requirements} />
       </Section>
 
-      <Section eyebrow="DOCUMENTS" title="Required Documents">
+      <Section eyebrow="DOCUMENTS" title="必要材料">
         <BulletGrid items={page.documents} />
       </Section>
 
-      <Section eyebrow="RISK" title="Common Refusal Reasons" muted>
+      <Section eyebrow="RISK" title="常见不许可理由" muted>
         <BulletGrid items={page.refusalReasons} />
       </Section>
 
-      <Section eyebrow="SUPPORT" title="Our Support">
+      <Section eyebrow="SUPPORT" title="本事务所的支持内容">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {page.support.map((item, index) => (
             <article key={item} className="border-t-4 border-[#143a6b] bg-[#f8fbff] p-5">
@@ -196,10 +205,20 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
         </div>
       </Section>
 
-      <Section eyebrow="FAQ" title="Frequently Asked Questions" muted>
+      <Section eyebrow="LABOR" title="中文社劳士也在事务所内" muted>
+        <div className="rounded-2xl bg-white p-6 shadow-sm">
+          <p className="text-sm leading-7 text-slate-700">
+            本事务所内有可用中文对应的社会保险劳务士。除了签证申请外，
+            外国人雇用时的劳动条件、社会保险、雇用保险、工资制度、入退社手续等
+            基础劳务问题也可以简单咨询。需要专业社劳士业务时，我们会与社劳士一起整理方向。
+          </p>
+        </div>
+      </Section>
+
+      <Section eyebrow="FAQ" title="常见问题">
         <div className="space-y-4">
           {page.faqs.map((faq) => (
-            <details key={faq.q} className="group rounded-2xl bg-white p-5 shadow-sm">
+            <details key={faq.q} className="group rounded-2xl bg-[#f8fbff] p-5 shadow-sm">
               <summary className="cursor-pointer list-none text-lg font-black text-[#143a6b]">
                 Q. {faq.q}
               </summary>
@@ -214,24 +233,25 @@ export function EnglishVisaDetailPage({ page }: { page: VisaPage }) {
       <section className="bg-[#143a6b] px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl rounded-[28px] border border-white/15 bg-white/10 p-8 text-center shadow-2xl">
           <p className="text-sm font-black tracking-[0.2em] text-[#caa15a]">CONTACT</p>
-          <h2 className="mt-3 text-3xl font-black">Consult with us about {page.title}</h2>
+          <h2 className="mt-3 text-3xl font-black">关于{page.title}，欢迎咨询</h2>
           <p className="mt-4 text-3xl font-black">{phoneDisplay}</p>
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <a
               href={phoneHref}
               className="rounded-full bg-white px-8 py-4 text-sm font-black text-[#143a6b] transition hover:bg-[#eef6ff]"
             >
-              Call Us
+              电话咨询
             </a>
             <Link
-              href="/en/contact"
+              href="/zh-cn/contact"
               className="rounded-full bg-[#caa15a] px-8 py-4 text-sm font-black text-white transition hover:bg-[#b58a42]"
             >
-              Contact Form
+              表单咨询
             </Link>
           </div>
         </div>
       </section>
+      <BackToTopButton />
     </main>
   );
 }

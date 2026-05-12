@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EnglishVisaDetailPage } from "../../_components/EnglishVisaDetailPage";
-import { visaPagesEn } from "../../_data/visaPagesEn";
+import { ChineseVisaDetailPage } from "../../_components/ChineseVisaDetailPage";
+import { visaPagesZhCn } from "../../_data/visaPagesZhCn";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return Object.keys(visaPagesEn).map((slug) => ({ slug }));
+  return Object.keys(visaPagesZhCn).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const page = visaPagesEn[slug];
+  const page = visaPagesZhCn[slug];
 
   if (!page) return {};
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: page.metaDescription,
     keywords: page.keywords,
     alternates: {
-      canonical: `/en/${page.slug}`,
+      canonical: `/zh-cn/${page.slug}`,
       languages: {
         ja: `/${page.slug}`,
         en: `/en/${page.slug}`,
@@ -34,18 +34,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
-      url: `/en/${page.slug}`,
-      locale: "en_US",
+      url: `/zh-cn/${page.slug}`,
+      locale: "zh_CN",
       type: "article",
     },
   };
 }
 
-export default async function EnglishVisaPage({ params }: PageProps) {
+export default async function ChineseVisaPage({ params }: PageProps) {
   const { slug } = await params;
-  const page = visaPagesEn[slug];
+  const page = visaPagesZhCn[slug];
 
   if (!page) notFound();
 
-  return <EnglishVisaDetailPage page={page} />;
+  return <ChineseVisaDetailPage page={page} />;
 }
