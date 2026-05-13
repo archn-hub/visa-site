@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://visa-site-qeif.vercel.app/sitemap.xml
+Sitemap: https://visa-site-qeif.vercel.app/sitemap-static.xml

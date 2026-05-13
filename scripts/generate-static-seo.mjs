@@ -76,7 +76,9 @@ const robots = `User-agent: *
 Allow: /
 
 Sitemap: ${absoluteUrl("/sitemap.xml")}
+Sitemap: ${absoluteUrl("/sitemap-static.xml")}
 `;
 
 fs.writeFileSync(path.join(root, "public", "sitemap.xml"), sitemap, "utf8");
+fs.writeFileSync(path.join(root, "public", "sitemap-static.xml"), sitemap, "utf8");
 fs.writeFileSync(path.join(root, "public", "robots.txt"), robots, "utf8");
