@@ -6,7 +6,7 @@ const vercelProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : undefined;
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? vercelProductionUrl ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL ?? vercelProductionUrl ?? "https://visa-site-qeif.vercel.app";
 export const phoneDisplay = "0120-77-9885";
 export const phoneHref = "tel:0120779885";
 export const wechatId = "ukaye924";
