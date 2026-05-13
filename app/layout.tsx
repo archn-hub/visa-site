@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "7x-aWD4i-M-fvHXUSURFrkjPRlr_tnycKYbs7ZgeXvw",
+  },
   openGraph: {
     title: "行政書士アーチ事務所 | 全国対応のビザ申請サポート",
     description: siteDescription,
